@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+Files/logins.csv
+Files/logins.txt
+Files/your_rights.txt
