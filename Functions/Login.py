@@ -51,7 +51,7 @@ def create_ac():
         Мусить мати хоча б 1 символ і велику букву і бути довжиною більше 8[/i b #D3ABFF]
         ''',justify='center')
 
-        new_user_pass = console.input('[b #D3ABFF]Введіть пароль  >>>[/b #D3ABFF]')
+        new_user_pass = console.input('[b #D3ABFF]Введіть пароль  >>> [/b #D3ABFF]')
 
         # Перевірка паролю
         if (len(new_user_pass) > 8 and any(i in string.punctuation for i in new_user_pass)
@@ -83,22 +83,24 @@ def create_ac():
 def enter_ac():
     flag4 = True
     while flag4:
-        username = console.input("[b #D3ABFF]Введіть ваш логін  >>>[/b #D3ABFF]")
+        username = console.input("[b #D3ABFF]Введіть ваш логін  >>> [/b #D3ABFF]")
         with open('Files/logins.csv', 'r', encoding='utf-8') as file:
             a = list(csv.DictReader(file))
             if any(i['Logins'] == username for i in a):
                 for i in a:
                     # print(i['Logins'])
                     if username == i['Logins']:
-                        passwd = console.input("[b #D3ABFF]Введіть пароль до вашого акаунту  >>>[/b #D3ABFF]")
+                        passwd = console.input("[b #D3ABFF]Введіть пароль до вашого акаунту  >>> [/b #D3ABFF]")
                         if passwd == i['Passwords']:
                             console.print("Ви увійшли в акаунт!",justify="center", style='b #D3ABFF')
                             global flag
                             flag = False
                             flag4 = False
-                            with open('Files/your_rights.txt', 'w', encoding='utf-8') as file:
+                            with open('Files/logins.txt','w',newline='',encoding='utf-8') as file:
+                                file.write(i['Logins'])
+                            with open('Files/your_rights.txt', 'w',newline='', encoding='utf-8') as file:
                                 file.write(i['Rights'])
-                            market()
+
                         else:
                             console.print("Пароль невірний!",style='red b')
             else:
@@ -123,7 +125,7 @@ def login():
         [b #D3ABFF][#408FFF]1[/#408FFF] - Увійти 
         [#408FFF]2[/#408FFF] - Зареєструватися[/b #D3ABFF]
         ''',justify="center")
-        choice = console.input('[b #D3ABFF]Виберіть пункт[/b #D3ABFF] [#D3ABFF]>>>[/#D3ABFF]')
+        choice = console.input('[b #D3ABFF]Виберіть пункт[/b #D3ABFF] [#D3ABFF]>>> [/#D3ABFF]')
         clear_console()
         match choice:
             case '1':
@@ -132,6 +134,7 @@ def login():
 
             case '2':
                 create_ac()
+
 
 
 
